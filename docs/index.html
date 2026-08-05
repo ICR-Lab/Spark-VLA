@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="SparkVLA: Stop-Aware Hierarchical VLA with Adaptive Action Chunking for Long-Horizon Manipulation. Anonymous project page."
+    />
+    <title>SparkVLA | Anonymous Project Page</title>
+    <link rel="preload" href="assets/teaser.png" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-container">
+        <a class="site-name" href="#top">SparkVLA</a>
+        <nav aria-label="Primary navigation">
+          <a href="#abstract">Abstract</a>
+          <a href="#overview">Overview</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#real-world">Real-World</a>
+          <a href="#bibtex">BibTeX</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero container">
+        <h1>SparkVLA: Stop-Aware Hierarchical VLA with Adaptive Action Chunking for Long-Horizon Manipulation</h1>
+        <p class="authors">Anonymous Authors</p>
+        <div class="resource-links" aria-label="Project resources">
+          <a class="disabled-link" aria-disabled="true">Paper</a>
+          <a href="https://github.com/huhuhushou/Spark-VLA" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="section container" id="abstract">
+        <h2>Abstract</h2>
+        <div class="abstract-box">
+          <p>
+            At every re-observation point in a hierarchical Vision-Language-Action (VLA) system, two interface decisions must be made: when to terminate the current subtask and how far to execute the proposed action chunk. These decisions are mutually dependent, yet existing architectures evaluate them in isolation. We present SparkVLA, a stop-aware hierarchical VLA that formulates both decisions as a single ranking: Stop competes against every action-prefix length in a unified candidate set, and the system selects the highest-scoring option. An Anchor-Conditioned Context Encoding module caches a history-aware subtask anchor encoding onset-state memory and goal semantics, guiding visual-token pruning toward task-relevant regions. A Stop-Aware Action-Prefix Selection head scores all candidates via full self-attention at chunk boundaries. SparkVLA achieves 47.12% success rate on RoboCerebra and 69.3% average success rate across three real-robot tasks.
+          </p>
+        </div>
+      </section>
+
+      <section class="section container" id="video">
+        <h2>Video</h2>
+        <figure class="media-frame">
+          <video controls preload="metadata" playsinline poster="assets/project-overview-poster.png" aria-label="SparkVLA project video">
+            <source src="assets/project-overview.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </figure>
+      </section>
+
+      <section class="section container" id="overview">
+        <h2>Overview</h2>
+        <figure class="figure-frame">
+          <img src="assets/overview.png" alt="SparkVLA architecture with high-level planning, anchor history, visual token pruning, low-level action generation, and unified ranking." />
+          <figcaption>
+            At each subtask onset, the high-level planner autoregressively generates a subtask command and constructs a history-aware anchor. At each decision boundary, the low-level executor proposes an action chunk and the selector ranks Stop against every action-prefix candidate.
+          </figcaption>
+        </figure>
+        <p class="overview-copy">
+          SparkVLA contains a high-level VLM planner and a low-level VLA executor. At the beginning of each subtask, the planner generates a natural-language subtask command from the global instruction, completed-subtask history, observations, and proprioceptive state. At each decision boundary, the executor proposes an action chunk conditioned on the current subtask command.
+        </p>
+      </section>
+
+      <section class="section container" id="method">
+        <h2>Method</h2>
+        <div class="method-block">
+          <h3>Anchor-Conditioned Context Encoding</h3>
+          <p>
+            The planner extracts a raw anchor after autoregressive subtask generation and fuses it with the anchor history pool. The resulting history-aware anchor represents both the subtask-onset environment and the semantic goal. It conditions differentiable visual token selection, and the high-level backbone produces the current hidden feature used by the selector.
+          </p>
+        </div>
+        <div class="method-block">
+          <h3>Stop-Aware Action-Prefix Selection</h3>
+          <p>
+            The unified candidate set contains Stop and all action-prefix lengths. A full-attention transformer jointly scores the candidates together with the subtask anchor and current high-level hidden feature. Selecting Stop completes the current subtask; selecting an action-prefix executes its actions before the next re-observation.
+          </p>
+        </div>
+        <figure class="figure-frame method-figure">
+          <img src="assets/chunk_subtask.png" alt="Adaptive action-prefix lengths selected throughout a manipulation rollout." />
+          <figcaption>Adaptive action-prefix selection during a multi-stage manipulation rollout.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section container" id="results">
+        <h2>Results</h2>
+
+        <h3 class="subsection-title">RoboCerebra</h3>
+        <div class="table-scroll" role="region" aria-label="RoboCerebra results" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Avg.</th>
+                <th>Dynamic Ran.</th>
+                <th>Dynamic Obs.</th>
+                <th>Memory Exp.</th>
+                <th>Memory Exe.</th>
+                <th>Mix</th>
+                <th>Ideal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>OpenVLA-OFT</td><td>1.68</td><td>3.95</td><td>0.00</td><td>0.84</td><td>0.96</td><td>1.04</td><td>3.95</td></tr>
+              <tr><td>SmolVLA</td><td>2.80</td><td>5.90</td><td>4.33</td><td>0.95</td><td>1.51</td><td>0.52</td><td>5.90</td></tr>
+              <tr><td>&pi;<sub>0.5</sub></td><td>12.29</td><td>11.84</td><td>9.09</td><td>12.61</td><td>10.58</td><td>17.71</td><td>10.53</td></tr>
+              <tr><td>HPE</td><td>16.55</td><td>18.63</td><td>19.18</td><td>9.06</td><td>17.83</td><td>13.21</td><td>21.10</td></tr>
+              <tr><td>Mem-0</td><td>20.29</td><td>18.42</td><td>18.42</td><td>25.21</td><td>18.27</td><td>19.81</td><td>19.74</td></tr>
+              <tr><td>SparkVLA + OpenVLA-OFT</td><td>24.15</td><td>18.22</td><td>20.99</td><td>28.56</td><td>26.63</td><td>27.54</td><td>18.22</td></tr>
+              <tr><td>SparkVLA + SmolVLA</td><td>25.32</td><td>18.22</td><td>19.07</td><td>30.68</td><td>30.26</td><td>27.54</td><td>19.88</td></tr>
+              <tr class="ours"><td>SparkVLA</td><td>47.12</td><td>33.13</td><td>43.87</td><td>60.30</td><td>43.58</td><td>48.52</td><td>46.38</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Success rate (%). Avg. is the micro-average across all RoboCerebra conditions.</p>
+
+        <div class="result-columns">
+          <div>
+            <h3>LIBERO</h3>
+            <p>SparkVLA achieves 98.5% average success rate and 98.0% success rate on LIBERO-Long.</p>
+          </div>
+          <div>
+            <h3>Inference Efficiency</h3>
+            <p>SparkVLA runs at 4.14 Hz, corresponding to 41.4 action steps/s, compared with 4.68 Hz for the original &pi;<sub>0.5</sub>. It retains 88% of the original policy throughput while supporting high-level planning and stop-aware adaptive action chunking.</p>
+          </div>
+          <div>
+            <h3>Real-World</h3>
+            <p>SparkVLA achieves 69.3% average success rate, compared with 48.0% for &pi;<sub>0.5</sub>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="real-world">
+        <h2>Real-World Experiments</h2>
+        <figure class="figure-frame">
+          <img src="assets/real_world.png" alt="Real-world task rollouts for Shelf Arrangement, Drawer Restocking, and Tea Preparation." />
+          <figcaption>
+            Real-world task rollouts. Shelf Arrangement and Drawer Restocking contain 6 subtasks each; Tea Preparation contains 12 subtasks.
+          </figcaption>
+        </figure>
+
+        <div class="video-grid">
+          <figure>
+            <video controls preload="metadata" playsinline poster="assets/arrange-poster.png">
+              <source src="assets/arrange.mp4" type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+            <figcaption><strong>Shelf Arrangement</strong><span>78% success rate</span></figcaption>
+          </figure>
+          <figure>
+            <video controls preload="metadata" playsinline poster="assets/restock-poster.png">
+              <source src="assets/restock.mp4" type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+            <figcaption><strong>Drawer Restocking</strong><span>74% success rate</span></figcaption>
+          </figure>
+          <figure>
+            <video controls preload="metadata" playsinline poster="assets/tea-poster.png">
+              <source src="assets/tea.mp4" type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+            <figcaption><strong>Tea Preparation</strong><span>56% success rate</span></figcaption>
+          </figure>
+        </div>
+        <p class="speed-note">Videos are shown at 4&times; speed.</p>
+      </section>
+
+      <section class="section container" id="paper">
+        <h2>Paper</h2>
+        <div class="paper-link-row">
+          <a class="paper-button disabled-link" aria-disabled="true">Paper Coming Soon</a>
+        </div>
+      </section>
+
+      <section class="section container" id="bibtex">
+        <h2>BibTeX</h2>
+        <pre><code>@article{anonymous2027sparkvla,
+  title   = {SparkVLA: Stop-Aware Hierarchical VLA with Adaptive Action Chunking for Long-Horizon Manipulation},
+  author  = {Anonymous Authors},
+  year    = {2027}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <span>SparkVLA</span>
+        <span>Anonymous Project Page</span>
+      </div>
+    </footer>
+  </body>
+</html>
