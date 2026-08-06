@@ -69,11 +69,11 @@ nav a:hover, nav a:focus-visible { color: var(--accent); }
   background:
     linear-gradient(
       to bottom,
-      rgba(255, 255, 255, .82) 0%,
-      rgba(255, 255, 255, .70) 31%,
-      rgba(255, 255, 255, .44) 49%,
-      rgba(255, 255, 255, .12) 76%,
-      rgba(255, 255, 255, .04) 100%
+      rgba(255, 255, 255, .94) 0%,
+      rgba(255, 255, 255, .88) 31%,
+      rgba(255, 255, 255, .68) 49%,
+      rgba(255, 255, 255, .22) 76%,
+      rgba(255, 255, 255, .08) 100%
     ),
     url("assets/teaser.png") center bottom / contain no-repeat;
   opacity: 1;
