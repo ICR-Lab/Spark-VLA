@@ -48,20 +48,14 @@ nav a { text-decoration: none; color: #4b5563; font-size: .82rem; font-weight: 6
 nav a:hover, nav a:focus-visible { color: var(--accent); }
 
 .hero {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 78px 42px 76px;
+  padding: 76px 0 70px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background: #f5f7fa;
+  background: #fff;
   border-bottom: 1px solid var(--line);
 }
-.hero h1 { max-width: 980px; margin: 0 auto 18px; font-size: 45px; line-height: 1.18; letter-spacing: 0; text-shadow: 0 1px 10px rgba(255, 255, 255, .78); }
-.authors { margin-bottom: 25px; color: #4b5563; font-size: 1.05rem; }
+.hero h1 { margin: 0; font-size: 52px; line-height: 1.1; letter-spacing: 0; }
+.hero-subtitle { max-width: 860px; margin: 13px auto 22px; color: #4b5563; font-size: 1.22rem; line-height: 1.45; font-weight: 600; }
+.authors { margin: 0 0 25px; color: #667085; font-size: 1.02rem; }
 .resource-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 30px; margin-bottom: 0; }
 .resource-links a, .paper-button {
   min-width: 188px;
@@ -132,8 +126,9 @@ footer { border-top: 1px solid var(--line); }
 @media (max-width: 800px) {
   .nav-container { align-items: flex-start; flex-direction: column; gap: 5px; padding-block: 10px; }
   nav { width: 100%; padding-bottom: 2px; }
-  .hero { padding: 58px 30px 66px; }
-  .hero h1 { font-size: 36px; }
+  .hero { padding: 62px 0 58px; }
+  .hero h1 { font-size: 43px; }
+  .hero-subtitle { max-width: 660px; font-size: 1.1rem; }
   .result-columns { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: 1fr; }
 }
@@ -141,8 +136,9 @@ footer { border-top: 1px solid var(--line); }
 @media (max-width: 520px) {
   .container, .nav-container { width: min(calc(100% - 28px), var(--container)); }
   body { font-size: 15px; }
-  .hero { padding: 48px 20px 54px; }
-  .hero h1 { font-size: 30px; }
+  .hero { padding: 52px 0 50px; }
+  .hero h1 { font-size: 36px; }
+  .hero-subtitle { margin-top: 11px; font-size: 1rem; line-height: 1.42; }
   .resource-links { margin-bottom: 32px; }
   .resource-links a, .resource-links .paper-button { min-width: min(100%, 188px); }
   .section { padding-top: 52px; padding-bottom: 52px; }
