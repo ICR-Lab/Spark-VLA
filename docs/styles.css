@@ -51,8 +51,14 @@ nav a:hover, nav a:focus-visible { color: var(--accent); }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 88px 42px 82px;
+  min-height: min(49.4vw, 533px);
+  padding: 96px 42px 90px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fa;
   border-bottom: 1px solid var(--line);
 }
 .hero::before {
@@ -60,10 +66,10 @@ nav a:hover, nav a:focus-visible { color: var(--accent); }
   z-index: -1;
   inset: 0;
   content: "";
-  background: url("assets/teaser.png") center / cover no-repeat;
-  opacity: .18;
+  background: url("assets/teaser.png") center / contain no-repeat;
+  opacity: .42;
 }
-.hero h1 { max-width: 980px; margin: 0 auto 18px; font-size: 45px; line-height: 1.18; letter-spacing: 0; }
+.hero h1 { max-width: 980px; margin: 0 auto 18px; font-size: 45px; line-height: 1.18; letter-spacing: 0; text-shadow: 0 1px 14px rgba(255, 255, 255, .78); }
 .authors { margin-bottom: 25px; color: #4b5563; font-size: 1.05rem; }
 .resource-links { display: flex; justify-content: center; gap: 12px; margin-bottom: 0; }
 .resource-links a, .paper-button {
@@ -131,7 +137,7 @@ footer { border-top: 1px solid var(--line); }
 @media (max-width: 800px) {
   .nav-container { align-items: flex-start; flex-direction: column; gap: 5px; padding-block: 10px; }
   nav { width: 100%; padding-bottom: 2px; }
-  .hero { padding: 70px 30px 66px; }
+  .hero { min-height: 0; padding: 70px 30px 66px; }
   .hero h1 { font-size: 36px; }
   .result-columns { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: 1fr; }
