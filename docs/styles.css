@@ -73,24 +73,24 @@ nav a:hover, nav a:focus-visible { color: var(--accent); }
 .authors { margin-bottom: 25px; color: #4b5563; font-size: 1.05rem; }
 .resource-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 30px; margin-bottom: 0; }
 .resource-links a, .paper-button {
-  min-width: 286px;
-  min-height: 68px;
-  padding: 13px 28px;
+  min-width: 250px;
+  min-height: 58px;
+  padding: 11px 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 17px;
+  gap: 13px;
   border: 2px solid rgba(255, 255, 255, .48);
-  border-radius: 21px;
+  border-radius: 18px;
   background: rgba(41, 43, 47, .52);
   color: #fff;
   box-shadow: 0 1px 2px rgba(15, 23, 42, .16);
   backdrop-filter: blur(4px);
   text-decoration: none;
-  font-size: 1.24rem;
+  font-size: 1.02rem;
   font-weight: 700;
 }
-.resource-links svg { width: 27px; height: 27px; stroke-width: 2.25; }
+.resource-links svg { width: 22px; height: 22px; stroke-width: 2.25; }
 .resource-links a:hover, .resource-links a:focus-visible { color: #fff; border-color: rgba(255, 255, 255, .82); background: rgba(25, 27, 31, .66); }
 .disabled-link { color: rgba(255, 255, 255, .92); cursor: default; }
 figcaption { margin-top: 10px; color: var(--muted); font-size: .86rem; line-height: 1.5; text-align: left; }
@@ -154,7 +154,7 @@ footer { border-top: 1px solid var(--line); }
   .hero { padding: 58px 20px 54px; }
   .hero h1 { font-size: 30px; }
   .resource-links { margin-bottom: 32px; }
-  .resource-links a, .resource-links .paper-button { min-width: min(100%, 286px); }
+  .resource-links a, .resource-links .paper-button { min-width: min(100%, 250px); }
   .section { padding-top: 52px; padding-bottom: 52px; }
   .section h2 { margin-bottom: 27px; font-size: 27px; }
   .abstract-box { padding: 21px 19px; }
