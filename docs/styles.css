@@ -53,8 +53,7 @@ nav a:hover, nav a:focus-visible { color: var(--accent); }
   background: #fff;
   border-bottom: 1px solid var(--line);
 }
-.hero h1 { margin: 0; font-size: 52px; line-height: 1.1; letter-spacing: 0; }
-.hero-subtitle { max-width: 860px; margin: 13px auto 22px; color: #4b5563; font-size: 1.22rem; line-height: 1.45; font-weight: 600; }
+.hero h1 { max-width: 1040px; margin: 0 auto 22px; font-size: clamp(2rem, 3vw, 2.55rem); line-height: 1.16; letter-spacing: 0; }
 .authors { margin: 0 0 25px; color: #667085; font-size: 1.02rem; }
 .resource-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 30px; margin-bottom: 0; }
 .resource-links a, .paper-button {
@@ -127,8 +126,7 @@ footer { border-top: 1px solid var(--line); }
   .nav-container { align-items: flex-start; flex-direction: column; gap: 5px; padding-block: 10px; }
   nav { width: 100%; padding-bottom: 2px; }
   .hero { padding: 62px 0 58px; }
-  .hero h1 { font-size: 43px; }
-  .hero-subtitle { max-width: 660px; font-size: 1.1rem; }
+  .hero h1 { font-size: clamp(2rem, 4.5vw, 2.4rem); }
   .result-columns { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: 1fr; }
 }
@@ -137,8 +135,7 @@ footer { border-top: 1px solid var(--line); }
   .container, .nav-container { width: min(calc(100% - 28px), var(--container)); }
   body { font-size: 15px; }
   .hero { padding: 52px 0 50px; }
-  .hero h1 { font-size: 36px; }
-  .hero-subtitle { margin-top: 11px; font-size: 1rem; line-height: 1.42; }
+  .hero h1 { font-size: 1.95rem; }
   .resource-links { margin-bottom: 32px; }
   .resource-links a, .resource-links .paper-button { min-width: min(100%, 188px); }
   .section { padding-top: 52px; padding-bottom: 52px; }
